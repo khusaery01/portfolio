@@ -1,0 +1,504 @@
+:root {
+  /* ===== PRIMARY COLORS ===== */
+  --primary: #2563eb;
+  --primary-dark: #051856;
+  --primary-light: #dbeafe;
+  --primary-soft: rgba(37, 99, 235, 0.08);
+
+  /* ===== BACKGROUND ===== */
+  --bg-main: #f8fafc;
+  --bg-white: #ffffff;
+  --bg-dark: #202d41;
+
+  /* ===== TEXT ===== */
+  --text-main: #183269;
+  --text-muted: #71a9fd;
+  --text-light: #ffffff;
+
+  /* ===== SHADOW ===== */
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   GLOBAL / RESET
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: var(--bg-main);
+  color: var(--text-main);
+}
+
+section {
+  min-height: 100vh;
+  padding: 120px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.section-container {
+  max-width: 1100px;
+  margin: auto;
+  width: 100%;
+}
+
+/* =========================
+   NAVBAR SECTION
+========================= */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(189, 207, 248, 0.75);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  box-shadow: var(--shadow-sm);
+  z-index: 1000;
+}
+
+nav::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #38bdf8, transparent);
+}
+
+.logo {
+  color: var(--primary);
+  font-size: 22px;
+  font-weight: bold;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+nav ul li a {
+  position: relative;
+  text-decoration: none;
+  color: #0f172a;
+  font-weight: 500;
+  padding: 5px 0;
+}
+
+/* garis underline */
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary);
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+/* saat hover → melebar kiri & kanan */
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+nav ul li a:hover {
+  color: var(--primary);
+}
+
+/* =========================
+   HOME SECTION
+========================= */
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 50px;
+  position: relative;
+  background: linear-gradient(to bottom, var(--bg-white), var(--primary-light));
+}
+
+.home h1 {
+  font-size: 48px;
+  color: #2563eb;
+}
+
+.home h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: var(--primary);
+}
+
+.home p {
+  font-size: 18px;
+  margin-bottom: 25px;
+  color: var(--bg-dark);
+}
+
+/* Button */
+.btn {
+  background: var(--primary);
+  color: var(--text-light);
+  padding: 12px 25px;
+  text-decoration: none;
+  border-radius: 6px;
+  width: fit-content;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: var(--bg-white);
+  color: var(--primary);
+}
+
+/* =========================
+   ABOUT SECTION
+========================= */
+.about {
+  min-height: 100vh;
+  padding: 100px 50px;
+  text-align: center;
+  background: linear-gradient(to bottom, var(--primary-light), var(--bg-white));
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.about h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+
+.about-text {
+  max-width: 700px;
+  line-height: 1.8;
+  margin-bottom: 50px;
+  color: var(--text-main);
+}
+
+/* TECH STACK (ABOUT) */
+
+.tech-stack {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+}
+
+/* Lingkaran */
+
+.tech-item {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: var(--bg-white);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: box-shadow 0.3s ease;
+}
+
+.tech-item i {
+  font-size: 80px;
+  margin-bottom: 8px;
+}
+
+.tech-item span {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Hover */
+
+.tech-item:hover {
+  animation: float 1.2s ease-in-out infinite;
+  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.25);
+}
+
+/* Brand Colors */
+.tech-item.html i {
+  color: #e34f26;
+}
+
+.tech-item.css i {
+  color: #1572b6;
+}
+
+.tech-item.js i {
+  color: #f7df1e;
+}
+
+/* =========================
+   PROJECTS SECTION
+========================= */
+.projects {
+  padding: 100px 50px;
+  justify-content: flex-start;
+  background: linear-gradient(to bottom, var(--bg-white), var(--primary-light));
+}
+
+.section-title {
+  font-size: 32px;
+  color: #2563eb;
+  margin-bottom: 50px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+}
+
+/* Card */
+
+.project-card {
+  background: var(--bg-white);
+  padding: 40px;
+  border-radius: 18px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  animation: breathe 2s ease-in-out infinite;
+  box-shadow: 0 22px 45px rgba(37, 99, 235, 0.18);
+}
+
+/* Header */
+.project-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.project-icon {
+  font-size: 28px;
+}
+
+.project-card h3 {
+  font-size: 20px;
+  color: #0f172a;
+}
+
+.project-card:hover h3 {
+  color: var(--primary);
+  transition: 0.3s;
+}
+
+/* Description */
+.project-card p {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #334155;
+}
+
+/* Tag */
+.project-tag {
+  font-size: 13px;
+  color: var(--primary);
+  font-weight: 500;
+}
+
+/* =========================
+   CONTACT SECTION
+========================= */
+.contact {
+  min-height: 30vh; /* ± seperempat layar */
+  padding: 60px 50px;
+  background: var(--bg-dark);
+  color: var(--text-light);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.contact h2 {
+  color: var(--primary-light);
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+.contact p {
+  color: var(--text-muted);
+  margin-bottom: 30px;
+  max-width: 600px;
+}
+
+/* Contact links */
+.contact-info {
+  display: flex;
+  gap: 30px;
+}
+
+.contact-info a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.contact-info a:hover {
+  color: var(--primary);
+}
+
+/* Tooltip wrapper */
+.tooltip {
+  position: relative;
+  cursor: pointer;
+}
+
+/* Kotak tooltip */
+.tooltip-text {
+  position: absolute;
+  bottom: -45px;
+  left: 50%;
+  transform: translateX(-50%) translateY(5px);
+  background: var(--bg-white);
+  color: var(--text-main);
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+/* Panah kecil */
+.tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent var(--bg-white) transparent;
+}
+
+/* Hover aktif */
+.tooltip:hover .tooltip-text {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes breeze {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(4px, -6px);
+  }
+  50% {
+    transform: translate(0, -10px);
+  }
+  75% {
+    transform: translate(-4px, -6px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes breathe {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   MEDIA QUERY
+========================= */
+@media (max-width: 1024px) {
+  nav {
+    padding: 15px 30px;
+  }
+
+  .home {
+    padding-left: 30px;
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    gap: 20px;
+  }
+
+  .home h1 {
+    font-size: 36px;
+  }
+
+  .home h2 {
+    font-size: 20px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  nav ul {
+    display: none;
+  }
+
+  .home {
+    padding: 100px 20px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .home h1 {
+    font-size: 32px;
+  }
+}
