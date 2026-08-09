@@ -328,7 +328,6 @@ section { padding: var(--section-pad); position: relative; }
   position: relative;
   z-index: 2;
 }
-.hero-content {}
 .hero-badge {
   display: inline-flex;
   align-items: center;
