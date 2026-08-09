@@ -1,0 +1,193 @@
+/* ============================================================
+   ANIMATIONS.CSS — Keyframes & Animation Utilities
+   ============================================================ */
+
+/* ── Fade In ─────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Fade In Up ──────────────────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(60px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Fade In Down ────────────────────────────────────────── */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Fade In Left ────────────────────────────────────────── */
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-60px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Fade In Right ───────────────────────────────────────── */
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(60px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Scale In ────────────────────────────────────────────── */
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.75); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── Floating Bob ────────────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%       { transform: translateY(-18px) rotate(3deg); }
+  66%       { transform: translateY(-8px) rotate(-3deg); }
+}
+
+/* ── Float Slow ──────────────────────────────────────────── */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-24px); }
+}
+
+/* ── Pulse Glow ──────────────────────────────────────────── */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(229,57,53,0.4), 0 0 60px rgba(229,57,53,0.2); }
+  50%       { box-shadow: 0 0 40px rgba(229,57,53,0.8), 0 0 100px rgba(229,57,53,0.4); }
+}
+
+/* ── Pulse Ring ──────────────────────────────────────────── */
+@keyframes pulseRing {
+  0%   { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* ── Rotating Border ─────────────────────────────────────── */
+@keyframes rotateBorder {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ── Blob Morph ──────────────────────────────────────────── */
+@keyframes blobMorph {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: translate(0,0) scale(1); }
+  33%       { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; transform: translate(30px,-20px) scale(1.05); }
+  66%       { border-radius: 40% 60% 40% 60% / 40% 50% 60% 50%; transform: translate(-20px,30px) scale(0.95); }
+}
+
+/* ── Blob Morph 2 ────────────────────────────────────────── */
+@keyframes blobMorph2 {
+  0%, 100% { border-radius: 40% 60% 60% 40% / 70% 40% 60% 30%; transform: translate(0,0) scale(1); }
+  33%       { border-radius: 70% 30% 40% 60% / 40% 60% 40% 60%; transform: translate(-30px,20px) scale(1.1); }
+  66%       { border-radius: 50% 50% 70% 30% / 30% 70% 50% 50%; transform: translate(20px,-30px) scale(0.9); }
+}
+
+/* ── Splash Logo Pulse ───────────────────────────────────── */
+@keyframes splashLogoPulse {
+  0%   { transform: scale(0.5); opacity: 0; }
+  60%  { transform: scale(1.1); opacity: 1; }
+  80%  { transform: scale(0.95); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ── Splash Glow Expand ──────────────────────────────────── */
+@keyframes splashGlowExpand {
+  0%   { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ── Splash Fade Out ─────────────────────────────────────── */
+@keyframes splashFadeOut {
+  0%   { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.05); }
+}
+
+/* ── Typing Cursor ───────────────────────────────────────── */
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ── Shimmer ─────────────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ── Progress Fill ───────────────────────────────────────── */
+@keyframes progressFill {
+  from { width: 0%; }
+}
+
+/* ── Slide In ────────────────────────────────────────────── */
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+/* ── Timeline Dot Ping ───────────────────────────────────── */
+@keyframes dotPing {
+  0%   { transform: scale(1); box-shadow: 0 0 0 0 rgba(229,57,53,0.7); }
+  70%  { transform: scale(1); box-shadow: 0 0 0 12px rgba(229,57,53,0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(229,57,53,0); }
+}
+
+/* ── Scroll Reveal Utility Classes ──────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger delay helpers */
+.delay-100 { transition-delay: 0.1s !important; }
+.delay-200 { transition-delay: 0.2s !important; }
+.delay-300 { transition-delay: 0.3s !important; }
+.delay-400 { transition-delay: 0.4s !important; }
+.delay-500 { transition-delay: 0.5s !important; }
+.delay-600 { transition-delay: 0.6s !important; }
+.delay-700 { transition-delay: 0.7s !important; }
+.delay-800 { transition-delay: 0.8s !important; }

@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yanuar — Flutter Developer & Laravel Backend Developer</title>
+  <meta name="description" content="Yanuar is a Flutter Developer, Laravel Backend Developer, Mobile App Developer, and UI Designer. Building modern mobile and web experiences." />
+  <meta name="keywords" content="Flutter Developer, Laravel Developer, Mobile App Developer, UI Designer, Portfolio, Yanuar" />
+  <meta name="author" content="Yanuar" />
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="Yanuar — Flutter & Laravel Developer Portfolio" />
+  <meta property="og:description" content="Building Modern Mobile & Web Experiences" />
+  <meta property="og:type"        content="website" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Ripple keyframe -->
+  <style>
+    @keyframes rippleAnim {
+      to { transform: scale(2); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SCROLL PROGRESS BAR
+  ═══════════════════════════════════════════════════════ -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       MOUSE GLOW
+  ═══════════════════════════════════════════════════════ -->
+  <div id="mouse-glow" aria-hidden="true"></div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       TOAST NOTIFICATION
+  ═══════════════════════════════════════════════════════ -->
+  <div id="toast" class="toast" role="alert" aria-live="polite">
+    <span id="toast-icon" class="toast-icon">✓</span>
+    <span id="toast-message"></span>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       BACK TO TOP
+  ═══════════════════════════════════════════════════════ -->
+  <button id="back-to-top" aria-label="Back to top">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- ═══════════════════════════════════════════════════════
+       1. SPLASH SCREEN
+  ═══════════════════════════════════════════════════════ -->
+  <div id="splash" role="status" aria-label="Loading portfolio">
+    <!-- Ambient glow -->
+    <div class="splash-glow" aria-hidden="true"></div>
+
+    <!-- Pulsing rings -->
+    <div class="splash-rings" aria-hidden="true">
+      <div class="splash-ring"></div>
+      <div class="splash-ring"></div>
+      <div class="splash-ring"></div>
+    </div>
+
+    <!-- Logo -->
+    <div class="splash-logo">
+      <div class="splash-logo-icon" aria-hidden="true">🚀</div>
+      <div>
+        <div class="splash-logo-text">YANUAR</div>
+        <div class="splash-logo-sub">Portfolio · 2026</div>
+      </div>
+    </div>
+
+    <!-- Progress bar -->
+    <div class="splash-progress" aria-hidden="true">
+      <div class="splash-progress-fill" id="splash-fill"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       2. NAVIGATION BAR
+  ═══════════════════════════════════════════════════════ -->
+  <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="container">
+      <div class="nav-inner">
+        <!-- Logo -->
+        <a href="#hero" class="nav-logo" aria-label="Yanuar Portfolio Home">
+          <div class="nav-logo-mark" aria-hidden="true">Y</div>
+          <span>Yanuar</span>
+        </a>
+
+        <!-- Desktop Menu -->
+        <ul class="nav-menu" role="list">
+          <li><a href="#hero"         class="nav-link">Home</a></li>
+          <li><a href="#about"        class="nav-link">About</a></li>
+          <li><a href="#skills"       class="nav-link">Skills</a></li>
+          <li><a href="#projects"     class="nav-link">Projects</a></li>
+          <li><a href="#certificates" class="nav-link">Certificates</a></li>
+          <li><a href="#contact"      class="nav-link nav-cta">Contact</a></li>
+        </ul>
+
+        <!-- Hamburger -->
+        <button id="hamburger" class="nav-hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav Drawer -->
+  <div id="mobile-nav" class="mobile-nav" role="navigation" aria-label="Mobile navigation">
+    <a href="#hero"         class="mobile-nav-link">🏠 Home</a>
+    <a href="#about"        class="mobile-nav-link">👤 About</a>
+    <a href="#skills"       class="mobile-nav-link">⚡ Skills</a>
+    <a href="#projects"     class="mobile-nav-link">🚀 Projects</a>
+    <a href="#experience"   class="mobile-nav-link">📅 Experience</a>
+    <a href="#certificates" class="mobile-nav-link">🏆 Certificates</a>
+    <a href="#github"       class="mobile-nav-link">💻 GitHub</a>
+    <a href="#contact"      class="mobile-nav-link">✉️ Contact</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       3. HERO SECTION
+  ═══════════════════════════════════════════════════════ -->
+  <section id="hero" aria-label="Hero section">
+    <!-- Animated background -->
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-blob hero-blob-1"></div>
+      <div class="hero-blob hero-blob-2"></div>
+      <div class="hero-blob hero-blob-3"></div>
+    </div>
+
+    <div class="container">
+      <div class="hero-grid">
+        <!-- Left: Content -->
+        <div class="hero-content">
+          <!-- Badge -->
+          <div class="hero-badge">
+            <span class="hero-badge-dot" aria-hidden="true"></span>
+            Available for freelance &amp; full-time
+          </div>
+
+          <!-- Name -->
+          <p class="hero-greeting">Hello, I'm</p>
+          <h1 class="hero-name">YANUAR</h1>
+
+          <!-- Typing roles -->
+          <div class="hero-roles" aria-live="polite">
+            <span class="hero-roles-prefix">I'm a </span>
+            <span class="hero-typing" id="hero-typing" aria-label="Flutter Developer"></span>
+            <span class="hero-cursor" aria-hidden="true">|</span>
+          </div>
+
+          <!-- Tagline -->
+          <p class="hero-tagline">
+            Building Modern Mobile &amp; Web Experiences — from elegant Flutter UIs
+            to powerful Laravel APIs, turning ideas into scalable products.
+          </p>
+
+          <!-- CTA Buttons -->
+          <div class="hero-actions">
+            <a href="#" id="download-cv" class="btn btn-primary" aria-label="Download CV">
+              <i class="fa-solid fa-download" aria-hidden="true"></i> Download CV
+            </a>
+            <a href="#projects" class="btn btn-glass" aria-label="View Projects">
+              <i class="fa-solid fa-rocket" aria-hidden="true"></i> View Projects
+            </a>
+            <a href="https://github.com/khusaery01" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="GitHub Profile">
+              <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
+            </a>
+            <a href="#contact" class="btn btn-outline" aria-label="Contact Me">
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i> Contact
+            </a>
+          </div>
+
+          <!-- Social Links -->
+          <div class="hero-socials">
+            <span class="hero-socials-label">Find me on</span>
+            <a href="https://github.com/khusaery01"    target="_blank" rel="noopener" class="social-btn" aria-label="GitHub">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://instagram.com/yanuarkhsryyy" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/62895636160154" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Visual -->
+        <div class="hero-visual">
+          <div class="hero-avatar-wrap">
+            <div class="hero-avatar-bg" aria-hidden="true"></div>
+            <div class="hero-avatar-ring"   aria-hidden="true"></div>
+            <div class="hero-avatar-ring-2" aria-hidden="true"></div>
+            <div class="hero-avatar-img"    aria-label="Yanuar avatar">👨‍💻</div>
+
+            <!-- Floating Tech Icons -->
+            <div class="floating-icon fi-flutter" title="Flutter" aria-label="Flutter">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" width="28" height="28" alt="Flutter" />
+            </div>
+            <div class="floating-icon fi-laravel" title="Laravel" aria-label="Laravel">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg" width="28" height="28" alt="Laravel" />
+            </div>
+            <div class="floating-icon fi-git" title="Git" aria-label="Git">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="28" height="28" alt="Git" />
+            </div>
+            <div class="floating-icon fi-mysql" title="MySQL" aria-label="MySQL">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" width="28" height="28" alt="MySQL" />
+            </div>
+            <div class="floating-icon fi-figma" title="Figma" aria-label="Figma">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" width="28" height="28" alt="Figma" />
+            </div>
+            <div class="floating-icon fi-dart" title="Dart" aria-label="Dart">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" width="28" height="28" alt="Dart" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator" aria-hidden="true">
+      <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       4. ABOUT ME
+  ═══════════════════════════════════════════════════════ -->
+  <section id="about" aria-label="About me">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">About Me</div>
+        <h2 class="section-title">Who is <span>Yanuar?</span></h2>
+        <p class="section-subtitle">A passionate developer crafting beautiful digital experiences</p>
+      </div>
+
+      <div class="about-grid">
+        <!-- Left: Profile Card -->
+        <div class="glass-card about-card reveal-left">
+          <div class="about-avatar" aria-hidden="true">👨‍💻</div>
+          <div class="about-name">Yanuar</div>
+          <div class="about-role">Flutter · Laravel · UI Designer</div>
+
+          <div class="about-info-list">
+            <div class="about-info-item">
+              <div class="about-info-icon" aria-hidden="true">🎓</div>
+              <div>
+                <div class="about-info-label">University</div>
+                <div class="about-info-value">Universitas Catur Insan Cendekia</div>
+              </div>
+            </div>
+            <div class="about-info-item">
+              <div class="about-info-icon" aria-hidden="true">📚</div>
+              <div>
+                <div class="about-info-label">Program</div>
+                <div class="about-info-value">S1 Teknik Informatika</div>
+              </div>
+            </div>
+            <div class="about-info-item">
+              <div class="about-info-icon" aria-hidden="true">🗓️</div>
+              <div>
+                <div class="about-info-label">Current Semester</div>
+                <div class="about-info-value">Semester 5</div>
+              </div>
+            </div>
+            <div class="about-info-item">
+              <div class="about-info-icon" aria-hidden="true">📍</div>
+              <div>
+                <div class="about-info-label">Location</div>
+                <div class="about-info-value">Kota Cirebon, Indonesia</div>
+              </div>
+            </div>
+            <div class="about-info-item">
+              <div class="about-info-icon" aria-hidden="true">💼</div>
+              <div>
+                <div class="about-info-label">Status</div>
+                <div class="about-info-value" style="color:#22C55E">✓ Open to Work</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+            <span class="tech-badge"><i class="fa-brands fa-flutter" aria-hidden="true"></i> Flutter</span>
+            <span class="tech-badge"><i class="fa-brands fa-laravel" aria-hidden="true"></i> Laravel</span>
+            <span class="tech-badge">🎨 UI/UX</span>
+            <span class="tech-badge">🌐 REST API</span>
+          </div>
+        </div>
+
+        <!-- Right: About Details + Stats -->
+        <div class="reveal-right" style="display:flex;flex-direction:column;gap:2rem;">
+          <div class="glass-card" style="padding:2.5rem;">
+            <div class="section-tag" style="margin-bottom:1.25rem;">My Story</div>
+            <p class="about-desc">
+              I'm a dedicated software developer specializing in <strong style="color:var(--white)">Flutter</strong> for cross-platform mobile apps
+              and <strong style="color:var(--white)">Laravel</strong> for robust backend systems.
+              I'm passionate about writing clean, scalable code and designing intuitive user interfaces
+              that feel both premium and effortless to use.
+            </p>
+            <p class="about-desc">
+              Currently pursuing my studies at Politeknik Negeri Banjarmasin while actively building
+              real-world applications — including food ordering apps, expense trackers, and
+              laundry management systems. I believe great software starts with great design.
+            </p>
+            <p class="about-desc" style="margin-bottom:0">
+              When I'm not coding, I'm exploring new design systems, contributing to open-source
+              projects, and learning the latest in mobile and web development.
+            </p>
+          </div>
+
+          <!-- Stats -->
+          <div class="about-stats">
+            <div class="stat-card reveal delay-100">
+              <div class="stat-number" data-counter="10" data-suffix="+">0+</div>
+              <div class="stat-label">Projects</div>
+            </div>
+            <div class="stat-card reveal delay-200">
+              <div class="stat-number" data-counter="8" data-suffix="+">0+</div>
+              <div class="stat-label">Certificates</div>
+            </div>
+            <div class="stat-card reveal delay-300">
+              <div class="stat-number" data-counter="15" data-suffix="+">0+</div>
+              <div class="stat-label">Technologies</div>
+            </div>
+            <div class="stat-card reveal delay-400">
+              <div class="stat-number" data-counter="3" data-suffix="yr">0yr</div>
+              <div class="stat-label">Experience</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       5. SKILLS
+  ═══════════════════════════════════════════════════════ -->
+  <section id="skills" aria-label="Skills">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">Tech Stack</div>
+        <h2 class="section-title">My <span>Skills</span></h2>
+        <p class="section-subtitle">Tools and technologies I work with every day</p>
+      </div>
+
+      <div class="skills-grid">
+        <!-- Flutter -->
+        <div class="glass-card skill-card reveal">
+          <div class="skill-header">
+            <div class="skill-icon-wrap">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" width="26" height="26" alt="Flutter" />
+            </div>
+            <div>
+              <div class="skill-name">Flutter</div>
+              <div class="skill-category">Mobile · Cross-platform</div>
+            </div>
+          </div>
+          <div class="skill-bar-wrap"><div class="skill-bar-fill" data-pct="90"></div></div>
+          <div class="skill-pct">90%</div>
+        </div>
+
+        <!-- Laravel -->
+        <div class="glass-card skill-card reveal delay-100">
+          <div class="skill-header">
+            <div class="skill-icon-wrap">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg" width="26" height="26" alt="Laravel" />
+            </div>
+            <div>
+              <div class="skill-name">Laravel</div>
+              <div class="skill-category">Backend · PHP Framework</div>
+            </div>
+          </div>
+          <div class="skill-bar-wrap"><div class="skill-bar-fill" data-pct="85"></div></div>
+          <div class="skill-pct">85%</div>
+        </div>
+
+        <!-- PHP -->
+        <div class="glass-card skill-card reveal delay-200">
+          <div class="skill-header">
+            <div class="skill-icon-wrap">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" width="26" height="26" alt="PHP" />
+            </div>
+            <div>
+              <div class="skill-name">PHP</div>
+              <div class="skill-category">Backend · Server-side</div>
+            </div>
+          </div>
+          <div class="skill-bar-wrap"><div class="skill-bar-fill" data-pct="82"></div></div>
+          <div class="skill-pct">82%</div>
+        </div>
+
+        <!-- Dart -->
+        <div class="glass-card skill-card reveal delay-300">
+          <div class="skill-header">
+            <div class="skill-icon-wrap">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" width="26" height="26" alt="Dart" />
+            </div>
+            <div>
+              <div class="skill-name">Dart</div>
+              <div class="skill-category">Language · Flutter</div>
+            </div>
+          </div>
+          <div class="skill-bar-wrap"><div class="skill-bar-fill" data-pct="88"></div></div>
+          <div class="skill-pct">88%</div>
+        </div>
+
+        <!-- JavaScript -->
+        <div class="glass-card skill-card reveal delay-400">
+          <div class="skill-header">
+            <div class="skill-icon-wrap">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="26" height="26" alt="JavaScript" />
+            </div>
+            <div>
+              <div class="skill-name">JavaScript</div>
+              <div class="skill-category">Frontend · Scripting</div>
+            </div>
+          </div>
+          <div class="skill-bar-wrap"><div class="skill-bar-fill" data-pct="75"></div></div>
+          <div class="skill-pct">75%</div>
+        </div>
+
+        <!-- HTML -->
+        <div class="glass-card skill-card reveal delay-500">
+          <div class="skill-header">
+            <div class="skill-icon-wrap">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" width="26" height="26" alt="HTML5" />
+            </div>
+            <div>
+              <div class="skill-name">HTML5</div>
+              <div class="skill-category">Markup · Structure</div>
+            </div>
+          </div>
+          <div class="skill-bar-wrap"><div class="skill-bar-fill" data-pct="90"></div></div>
+          <div class="skill-pct">90%</div>
+        </div>
+
+        <!-- CSS -->
+        <div class="glass-card skill-card reveal delay-600">
+          <div class="skill-header">
+            <div class="skill-icon-wrap">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" width="26" height="26" alt="CSS3" />
+            </div>
+            <div>
+              <div class="skill-name">CSS3</div>
+              <div class="skill-category">Styling · Animations</div>
+            </div>
+          </div>
+          <div class="skill-bar-wrap"><div class="skill-bar-fill" data-pct="85"></div></div>
+          <div class="skill-pct">85%</div>
+        </div>
+
+        <!-- MySQL -->
+        <div class="glass-card skill-card reveal delay-700">
+          <div class="skill-header">
+            <div class="skill-icon-wrap">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" width="26" height="26" alt="MySQL" />
+            </div>
+            <div>
+              <div class="skill-name">MySQL</div>
+              <div class="skill-category">Database · RDBMS</div>
+            </div>
+          </div>
+          <div class="skill-bar-wrap"><div class="skill-bar-fill" data-pct="80"></div></div>
+          <div class="skill-pct">80%</div>
+        </div>
+
+        <!-- Git -->
+        <div class="glass-card skill-card reveal">
+          <div class="skill-header">
+            <div class="skill-icon-wrap">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="26" height="26" alt="Git" />
+            </div>
+            <div>
+              <div class="skill-name">Git</div>
+              <div class="skill-category">Version Control</div>
+            </div>
+          </div>
+          <div class="skill-bar-wrap"><div class="skill-bar-fill" data-pct="83"></div></div>
+          <div class="skill-pct">83%</div>
+        </div>
+
+        <!-- GitHub -->
+        <div class="glass-card skill-card reveal delay-100">
+          <div class="skill-header">
+            <div class="skill-icon-wrap" style="font-size:1.5rem;">
+              <i class="fa-brands fa-github" aria-hidden="true"></i>
+            </div>
+            <div>
+              <div class="skill-name">GitHub</div>
+              <div class="skill-category">Collaboration</div>
+            </div>
+          </div>
+          <div class="skill-bar-wrap"><div class="skill-bar-fill" data-pct="85"></div></div>
+          <div class="skill-pct">85%</div>
+        </div>
+
+        <!-- REST API -->
+        <div class="glass-card skill-card reveal delay-200">
+          <div class="skill-header">
+            <div class="skill-icon-wrap" style="font-size:1.5rem;">🌐</div>
+            <div>
+              <div class="skill-name">REST API</div>
+              <div class="skill-category">Integration · Backend</div>
+            </div>
+          </div>
+          <div class="skill-bar-wrap"><div class="skill-bar-fill" data-pct="87"></div></div>
+          <div class="skill-pct">87%</div>
+        </div>
+
+        <!-- Postman -->
+        <div class="glass-card skill-card reveal delay-300">
+          <div class="skill-header">
+            <div class="skill-icon-wrap" style="font-size:1.5rem;">📮</div>
+            <div>
+              <div class="skill-name">Postman</div>
+              <div class="skill-category">API Testing</div>
+            </div>
+          </div>
+          <div class="skill-bar-wrap"><div class="skill-bar-fill" data-pct="80"></div></div>
+          <div class="skill-pct">80%</div>
+        </div>
+
+        <!-- Figma -->
+        <div class="glass-card skill-card reveal delay-400">
+          <div class="skill-header">
+            <div class="skill-icon-wrap">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" width="26" height="26" alt="Figma" />
+            </div>
+            <div>
+              <div class="skill-name">Figma</div>
+              <div class="skill-category">UI Design · Prototyping</div>
+            </div>
+          </div>
+          <div class="skill-bar-wrap"><div class="skill-bar-fill" data-pct="78"></div></div>
+          <div class="skill-pct">78%</div>
+        </div>
+
+        <!-- VS Code -->
+        <div class="glass-card skill-card reveal delay-500">
+          <div class="skill-header">
+            <div class="skill-icon-wrap">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" width="26" height="26" alt="VS Code" />
+            </div>
+            <div>
+              <div class="skill-name">VS Code</div>
+              <div class="skill-category">IDE · Editor</div>
+            </div>
+          </div>
+          <div class="skill-bar-wrap"><div class="skill-bar-fill" data-pct="95"></div></div>
+          <div class="skill-pct">95%</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       6. FEATURED PROJECTS
+  ═══════════════════════════════════════════════════════ -->
+  <section id="projects" aria-label="Featured Projects">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">Portfolio</div>
+        <h2 class="section-title">Featured <span>Projects</span></h2>
+        <p class="section-subtitle">Handcrafted apps built with passion and precision</p>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- Project 1: DIMVES -->
+        <article class="glass-card project-card reveal">
+          <div class="project-thumbnail">
+            <div class="project-bg-gradient" style="background: linear-gradient(135deg, rgba(229,57,53,0.4) 0%, rgba(255,112,67,0.3) 100%);" aria-hidden="true"></div>
+            <!-- Phone mockup -->
+            <div class="project-mockup" aria-label="DIMVES app mockup">
+              <div class="project-mockup-notch" aria-hidden="true"></div>
+              <div class="project-mockup-screen" style="background: linear-gradient(180deg, #1a1035 0%, #0f0a20 100%);">
+                🍔
+              </div>
+            </div>
+            <!-- Second phone -->
+            <div class="project-mockup" style="position:absolute; right:10%; transform:rotate(6deg) translateY(10px); opacity:0.6; z-index:1;" aria-hidden="true">
+              <div class="project-mockup-screen" style="background: linear-gradient(180deg, #0f0a20 0%, #1a0a10 100%);">🛒</div>
+            </div>
+          </div>
+
+          <div class="project-body">
+            <div class="project-number">01 / Featured</div>
+            <h3 class="project-title">DIMVES</h3>
+            <p class="project-desc">
+              Modern Flutter food ordering application integrated with a Laravel REST API backend.
+              Features a beautifully designed UI with seamless order flow, cart management, and
+              real-time product catalog.
+            </p>
+
+            <div class="project-features">
+              <span class="project-feature">🔐 Authentication</span>
+              <span class="project-feature">📦 Product Detail</span>
+              <span class="project-feature">🛒 Shopping Cart</span>
+              <span class="project-feature">💳 Checkout</span>
+              <span class="project-feature">🎨 Responsive UI</span>
+              <span class="project-feature">🗂️ Categories</span>
+            </div>
+
+            <div class="project-tech">
+              <span class="tech-badge">Flutter</span>
+              <span class="tech-badge">Laravel</span>
+              <span class="tech-badge">Provider</span>
+              <span class="tech-badge">REST API</span>
+              <span class="tech-badge">MySQL</span>
+            </div>
+
+            <div class="project-actions">
+              <a href="https://github.com/yanuar/dimves" target="_blank" rel="noopener" class="btn btn-glass" aria-label="DIMVES GitHub">
+                <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
+              </a>
+              <a href="#" class="btn btn-primary" aria-label="DIMVES Live Demo">
+                <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Live Demo
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2: MoneyMate -->
+        <article class="glass-card project-card reveal delay-200">
+          <div class="project-thumbnail">
+            <div class="project-bg-gradient" style="background: linear-gradient(135deg, rgba(59,130,246,0.4) 0%, rgba(139,92,246,0.3) 100%);" aria-hidden="true"></div>
+            <div class="project-mockup" aria-label="MoneyMate app mockup">
+              <div class="project-mockup-notch" aria-hidden="true"></div>
+              <div class="project-mockup-screen" style="background: linear-gradient(180deg, #0a1525 0%, #0a0f25 100%);">
+                💰
+              </div>
+            </div>
+          </div>
+
+          <div class="project-body">
+            <div class="project-number">02 / Mobile App</div>
+            <h3 class="project-title">MoneyMate</h3>
+            <p class="project-desc">
+              Personal expense tracking application built with Flutter and SQLite.
+              Features beautiful charts, custom expense categories, and an intuitive modern
+              interface to help users manage their finances effectively.
+            </p>
+
+            <div class="project-features">
+              <span class="project-feature">📊 Charts</span>
+              <span class="project-feature">🗂️ Categories</span>
+              <span class="project-feature">💾 SQLite</span>
+              <span class="project-feature">📅 History</span>
+              <span class="project-feature">🎨 Modern UI</span>
+            </div>
+
+            <div class="project-tech">
+              <span class="tech-badge">Flutter</span>
+              <span class="tech-badge">Dart</span>
+              <span class="tech-badge">SQLite</span>
+              <span class="tech-badge">fl_chart</span>
+            </div>
+
+            <div class="project-actions">
+              <a href="https://github.com/yanuar/moneymate" target="_blank" rel="noopener" class="btn btn-glass" aria-label="MoneyMate GitHub">
+                <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
+              </a>
+              <a href="#" class="btn btn-primary" aria-label="MoneyMate Live Demo">
+                <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Demo
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3: Laundry Management -->
+        <article class="glass-card project-card reveal delay-400">
+          <div class="project-thumbnail">
+            <div class="project-bg-gradient" style="background: linear-gradient(135deg, rgba(34,197,94,0.4) 0%, rgba(16,185,129,0.3) 100%);" aria-hidden="true"></div>
+            <div class="project-mockup" style="border-radius:12px; width:150px; height:100px; aspect-ratio:unset;" aria-label="Laundry Management app mockup">
+              <div style="background: linear-gradient(135deg, #0a200f, #051510); border-radius:8px; height:100%; display:flex; align-items:center; justify-content:center; font-size:2.5rem;">
+                👕
+              </div>
+            </div>
+          </div>
+
+          <div class="project-body">
+            <div class="project-number">03 / Web App</div>
+            <h3 class="project-title">Laundry Management</h3>
+            <p class="project-desc">
+              Full-featured laundry business management system built with Laravel and Bootstrap.
+              Complete CRUD operations, authentication system, admin dashboard, and order tracking.
+            </p>
+
+            <div class="project-features">
+              <span class="project-feature">🔐 Auth</span>
+              <span class="project-feature">📋 CRUD</span>
+              <span class="project-feature">📊 Dashboard</span>
+              <span class="project-feature">🔍 Search</span>
+              <span class="project-feature">📱 Responsive</span>
+            </div>
+
+            <div class="project-tech">
+              <span class="tech-badge">Laravel</span>
+              <span class="tech-badge">Bootstrap</span>
+              <span class="tech-badge">MySQL</span>
+              <span class="tech-badge">Blade</span>
+            </div>
+
+            <div class="project-actions">
+              <a href="https://github.com/yanuar/laundry" target="_blank" rel="noopener" class="btn btn-glass" aria-label="Laundry Management GitHub">
+                <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
+              </a>
+              <a href="#" class="btn btn-primary" aria-label="Laundry Management Live Demo">
+                <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Demo
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div><!-- /projects-grid -->
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       7. EXPERIENCE TIMELINE
+  ═══════════════════════════════════════════════════════ -->
+  <section id="experience" aria-label="Experience Timeline">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">Journey</div>
+        <h2 class="section-title">My <span>Experience</span></h2>
+        <p class="section-subtitle">The milestones that shaped my developer journey</p>
+      </div>
+
+      <div class="timeline">
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="timeline-date">2023</div>
+          <div class="glass-card timeline-card">
+            <div class="timeline-title">🚀 Started Programming</div>
+            <div class="timeline-body">
+              Began my programming journey with HTML, CSS, and PHP fundamentals.
+              Discovered my passion for building digital products and decided to pursue
+              software development seriously alongside my studies.
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal delay-200">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="timeline-date">2024</div>
+          <div class="glass-card timeline-card">
+            <div class="timeline-title">⚡ Learned Laravel</div>
+            <div class="timeline-body">
+              Mastered the Laravel framework and built my first full-stack web applications
+              with RESTful API architecture. Learned database design, authentication systems,
+              and MVC patterns. Built a Laundry Management system as capstone project.
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal delay-400">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="timeline-date">2025</div>
+          <div class="glass-card timeline-card">
+            <div class="timeline-title">📱 Started Flutter Development</div>
+            <div class="timeline-body">
+              Dived deep into Flutter and Dart, building cross-platform mobile applications.
+              Learned state management with Provider, integrated REST APIs, and designed
+              premium mobile UIs. Completed DIMVES food ordering app and MoneyMate expense tracker.
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal delay-600">
+          <div class="timeline-dot" aria-hidden="true"></div>
+          <div class="timeline-date">2026</div>
+          <div class="glass-card timeline-card">
+            <div class="timeline-title">🌐 Building Full Stack Applications</div>
+            <div class="timeline-body">
+              Currently building end-to-end full-stack applications combining Flutter frontends
+              with Laravel backends. Focused on clean architecture, performance optimization,
+              and delivering production-ready applications. Exploring advanced Flutter animations
+              and microservices architecture.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       8. CERTIFICATES
+  ═══════════════════════════════════════════════════════ -->
+  <section id="certificates" aria-label="Certificates">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">Achievements</div>
+        <h2 class="section-title">My <span>Certificates</span></h2>
+        <p class="section-subtitle">Continuous learning and professional certifications</p>
+      </div>
+
+      <div class="cert-slider-wrap">
+        <div id="cert-slider" class="cert-slider" role="list">
+
+          <div class="glass-card cert-card" role="listitem">
+            <div class="cert-icon" aria-hidden="true">📱</div>
+            <div>
+              <div class="cert-title">Flutter Development Fundamentals</div>
+              <div class="cert-issuer">Dicoding Indonesia</div>
+              <div class="cert-year"><span class="glow-dot" aria-hidden="true"></span> 2025</div>
+            </div>
+            <span class="tech-badge">Mobile Dev</span>
+          </div>
+
+          <div class="glass-card cert-card" role="listitem">
+            <div class="cert-icon" aria-label="Laravel" style="background: linear-gradient(135deg, #FF2D20, #c1271a);" aria-hidden="true">🔴</div>
+            <div>
+              <div class="cert-title">Laravel Web Development</div>
+              <div class="cert-issuer">Dicoding Indonesia</div>
+              <div class="cert-year"><span class="glow-dot" aria-hidden="true"></span> 2024</div>
+            </div>
+            <span class="tech-badge">Backend</span>
+          </div>
+
+          <div class="glass-card cert-card" role="listitem">
+            <div class="cert-icon" style="background: linear-gradient(135deg, #1BA0D7, #0d7aab);" aria-hidden="true">🌐</div>
+            <div>
+              <div class="cert-title">Cisco — Introduction to Networks</div>
+              <div class="cert-issuer">Cisco Networking Academy</div>
+              <div class="cert-year"><span class="glow-dot" aria-hidden="true"></span> 2024</div>
+            </div>
+            <span class="tech-badge">Networking</span>
+          </div>
+
+          <div class="glass-card cert-card" role="listitem">
+            <div class="cert-icon" style="background: linear-gradient(135deg, #4CAF50, #2e7d32);" aria-hidden="true">💻</div>
+            <div>
+              <div class="cert-title">Belajar Dasar Pemrograman Web</div>
+              <div class="cert-issuer">Dicoding Indonesia</div>
+              <div class="cert-year"><span class="glow-dot" aria-hidden="true"></span> 2023</div>
+            </div>
+            <span class="tech-badge">Web Dev</span>
+          </div>
+
+          <div class="glass-card cert-card" role="listitem">
+            <div class="cert-icon" style="background: linear-gradient(135deg, #9C27B0, #6a1b9a);" aria-hidden="true">🎨</div>
+            <div>
+              <div class="cert-title">UI/UX Design Fundamentals</div>
+              <div class="cert-issuer">Google — Coursera</div>
+              <div class="cert-year"><span class="glow-dot" aria-hidden="true"></span> 2025</div>
+            </div>
+            <span class="tech-badge">Design</span>
+          </div>
+
+          <div class="glass-card cert-card" role="listitem">
+            <div class="cert-icon" style="background: linear-gradient(135deg, #FF6F00, #e65100);" aria-hidden="true">🔥</div>
+            <div>
+              <div class="cert-title">Memulai Pemrograman Dart</div>
+              <div class="cert-issuer">Dicoding Indonesia</div>
+              <div class="cert-year"><span class="glow-dot" aria-hidden="true"></span> 2025</div>
+            </div>
+            <span class="tech-badge">Dart</span>
+          </div>
+
+          <div class="glass-card cert-card" role="listitem">
+            <div class="cert-icon" style="background: linear-gradient(135deg, #1BA0D7, #0d7aab);" aria-hidden="true">🔒</div>
+            <div>
+              <div class="cert-title">Cisco — Cybersecurity Essentials</div>
+              <div class="cert-issuer">Cisco Networking Academy</div>
+              <div class="cert-year"><span class="glow-dot" aria-hidden="true"></span> 2025</div>
+            </div>
+            <span class="tech-badge">Security</span>
+          </div>
+
+          <div class="glass-card cert-card" role="listitem">
+            <div class="cert-icon" style="background: linear-gradient(135deg, #E53935, #b71c1c);" aria-hidden="true">🏆</div>
+            <div>
+              <div class="cert-title">Belajar Membuat Aplikasi Flutter</div>
+              <div class="cert-issuer">Dicoding Indonesia</div>
+              <div class="cert-year"><span class="glow-dot" aria-hidden="true"></span> 2025</div>
+            </div>
+            <span class="tech-badge">Flutter</span>
+          </div>
+
+        </div><!-- /cert-slider -->
+
+        <!-- Controls -->
+        <div class="slider-controls">
+          <button id="cert-prev" class="slider-btn" aria-label="Previous certificate">
+            <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+          </button>
+          <button id="cert-next" class="slider-btn" aria-label="Next certificate">
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div id="cert-dots" class="slider-dots" role="tablist" aria-label="Certificate slider navigation"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       9. GITHUB STATISTICS
+  ═══════════════════════════════════════════════════════ -->
+  <section id="github" aria-label="GitHub Statistics">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">Open Source</div>
+        <h2 class="section-title">GitHub <span>Statistics</span></h2>
+        <p class="section-subtitle">My coding activity and contributions at a glance</p>
+      </div>
+
+      <!-- Stats Cards -->
+      <div class="github-grid">
+        <div class="glass-card github-stat-card reveal">
+          <span class="github-stat-icon" aria-hidden="true">📦</span>
+          <div class="github-stat-val" data-counter="24" data-suffix="">0</div>
+          <div class="github-stat-label">Repositories</div>
+        </div>
+        <div class="glass-card github-stat-card reveal delay-200">
+          <span class="github-stat-icon" aria-hidden="true">⭐</span>
+          <div class="github-stat-val" data-counter="48" data-suffix="">0</div>
+          <div class="github-stat-label">Stars Earned</div>
+        </div>
+        <div class="glass-card github-stat-card reveal delay-400">
+          <span class="github-stat-icon" aria-hidden="true">👥</span>
+          <div class="github-stat-val" data-counter="32" data-suffix="">0</div>
+          <div class="github-stat-label">Followers</div>
+        </div>
+        <div class="glass-card github-stat-card reveal delay-600">
+          <span class="github-stat-icon" aria-hidden="true">🔥</span>
+          <div class="github-stat-val" data-counter="420" data-suffix="">0</div>
+          <div class="github-stat-label">Contributions</div>
+        </div>
+      </div>
+
+      <!-- Languages + Contribution Graph -->
+      <div class="github-langs">
+        <div class="glass-card github-langs-card reveal-left">
+          <div class="langs-title">Top Languages</div>
+
+          <div class="lang-item">
+            <div class="lang-dot" style="background:#54C5F8;" aria-hidden="true"></div>
+            <div class="lang-name">Dart</div>
+            <div class="lang-bar-wrap"><div class="lang-bar-fill" style="width:40%;background:#54C5F8;"></div></div>
+            <div class="lang-pct">40%</div>
+          </div>
+          <div class="lang-item">
+            <div class="lang-dot" style="background:#FF2D20;" aria-hidden="true"></div>
+            <div class="lang-name">PHP</div>
+            <div class="lang-bar-wrap"><div class="lang-bar-fill" style="width:30%;background:#FF2D20;"></div></div>
+            <div class="lang-pct">30%</div>
+          </div>
+          <div class="lang-item">
+            <div class="lang-dot" style="background:#F7DF1E;" aria-hidden="true"></div>
+            <div class="lang-name">JavaScript</div>
+            <div class="lang-bar-wrap"><div class="lang-bar-fill" style="width:15%;background:#F7DF1E;"></div></div>
+            <div class="lang-pct">15%</div>
+          </div>
+          <div class="lang-item">
+            <div class="lang-dot" style="background:#E34F26;" aria-hidden="true"></div>
+            <div class="lang-name">HTML</div>
+            <div class="lang-bar-wrap"><div class="lang-bar-fill" style="width:10%;background:#E34F26;"></div></div>
+            <div class="lang-pct">10%</div>
+          </div>
+          <div class="lang-item">
+            <div class="lang-dot" style="background:#1572B6;" aria-hidden="true"></div>
+            <div class="lang-name">CSS</div>
+            <div class="lang-bar-wrap"><div class="lang-bar-fill" style="width:5%;background:#1572B6;"></div></div>
+            <div class="lang-pct">5%</div>
+          </div>
+        </div>
+
+        <!-- Contribution Graph -->
+        <div class="glass-card contrib-card reveal-right">
+          <div class="contrib-title">Contribution Graph — 2025</div>
+          <div id="contrib-grid" class="contrib-grid" aria-label="GitHub contribution graph"></div>
+          <div style="display:flex; align-items:center; gap:0.5rem; margin-top:1rem; font-size:0.75rem; color:var(--text-muted);">
+            <span>Less</span>
+            <div style="width:10px;height:10px;border-radius:2px;background:rgba(255,255,255,0.05);"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:rgba(229,57,53,0.2);"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:rgba(229,57,53,0.4);"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:rgba(229,57,53,0.7);"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:rgba(229,57,53,0.95);"></div>
+            <span>More</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       10. CONTACT
+  ═══════════════════════════════════════════════════════ -->
+  <section id="contact" aria-label="Contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">Get In Touch</div>
+        <h2 class="section-title">Let's <span>Connect</span></h2>
+        <p class="section-subtitle">Have a project in mind? I'd love to hear from you.</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Left: Contact Info -->
+        <div class="glass-card contact-info-card reveal-left">
+          <div class="contact-title">Contact Information</div>
+          <p class="contact-desc">
+            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+            Feel free to reach out through any of the channels below.
+          </p>
+
+          <div class="contact-links">
+            <a href="mailto:yanuarkhusaeri24@gmail.com" class="contact-link" aria-label="Email Yanuar">
+              <div class="contact-link-icon" aria-hidden="true">✉️</div>
+              <div>
+                <div class="contact-link-label">Email</div>
+                <div class="contact-link-val">yanuarkhusaeri24@gmail.com</div>
+              </div>
+            </a>
+            <a href="tel:+62895636160154" class="contact-link" aria-label="Call Yanuar">
+              <div class="contact-link-icon" aria-hidden="true">📱</div>
+              <div>
+                <div class="contact-link-label">Phone / WhatsApp</div>
+                <div class="contact-link-val">+62 895-6361-60154</div>
+              </div>
+            </a>
+            <a href="https://github.com/khusaery01" target="_blank" rel="noopener" class="contact-link" aria-label="Yanuar on GitHub">
+              <div class="contact-link-icon" aria-hidden="true"><i class="fa-brands fa-github"></i></div>
+              <div>
+                <div class="contact-link-label">GitHub</div>
+                <div class="contact-link-val">github.com/khusaery01</div>
+              </div>
+            </a>
+            <a href="https://instagram.com/yanuarkhsryyy" target="_blank" rel="noopener" class="contact-link" aria-label="Yanuar on Instagram">
+              <div class="contact-link-icon" aria-hidden="true"><i class="fa-brands fa-instagram"></i></div>
+              <div>
+                <div class="contact-link-label">Instagram</div>
+                <div class="contact-link-val">@yanuarkhsryyy</div>
+              </div>
+            </a>
+            <a href="https://wa.me/62895636160154" target="_blank" rel="noopener" class="contact-link" aria-label="Yanuar on WhatsApp">
+              <div class="contact-link-icon" aria-hidden="true"><i class="fa-brands fa-whatsapp"></i></div>
+              <div>
+                <div class="contact-link-label">WhatsApp</div>
+                <div class="contact-link-val">+62 895-6361-60154</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Contact Form -->
+        <div class="glass-card contact-form-card reveal-right">
+          <div class="contact-form-title">Send a Message</div>
+          <p class="contact-form-sub">I'll respond within 24 hours ⚡</p>
+
+          <form id="contact-form" novalidate aria-label="Contact form">
+            <div class="form-group">
+              <label for="contact-name">Your Name</label>
+              <input type="text" id="contact-name" name="name" class="form-control"
+                     placeholder="e.g. John Doe" required autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label for="contact-email">Email Address</label>
+              <input type="email" id="contact-email" name="email" class="form-control"
+                     placeholder="your@email.com" required autocomplete="email" />
+            </div>
+            <div class="form-group">
+              <label for="contact-subject">Subject</label>
+              <input type="text" id="contact-subject" name="subject" class="form-control"
+                     placeholder="Project discussion, collaboration…" />
+            </div>
+            <div class="form-group">
+              <label for="contact-message">Message</label>
+              <textarea id="contact-message" name="message" class="form-control"
+                        placeholder="Tell me about your project or idea…" required></textarea>
+            </div>
+            <button type="submit" id="submit-btn" class="btn btn-primary btn-submit" style="width:100%;justify-content:center;padding:1rem;" aria-label="Send message">
+              <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       11. FOOTER
+  ═══════════════════════════════════════════════════════ -->
+  <footer id="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="#hero" class="footer-logo" aria-label="Back to top">
+          <div class="nav-logo-mark" aria-hidden="true">Y</div>
+          <span>Yanuar</span>
+        </a>
+
+        <p class="footer-copy">
+          Building modern digital experiences with ❤️ and <span>passion</span>
+        </p>
+
+        <div class="footer-socials" aria-label="Social media links">
+          <a href="https://github.com/khusaery01"      target="_blank" rel="noopener" class="social-btn" aria-label="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="https://instagram.com/yanuarkhsryyy"   target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://wa.me/62895636160154"    target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-divider" aria-hidden="true"></div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Yanuar. All rights reserved.</span>
+        <span aria-hidden="true">·</span>
+        <span>Made with <span style="color:var(--primary)">♥</span> in Banjarmasin, Indonesia</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SCRIPTS
+  ═══════════════════════════════════════════════════════ -->
+  <script src="js/typing.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
