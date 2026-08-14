@@ -1,5 +1,5 @@
 /* ============================================================
-   ANIMATIONS.CSS — Keyframes & Animation Utilities
+   ANIMATIONS.CSS — Keyframes & Animation Utilities (Modern Ocean)
    ============================================================ */
 
 /* ── Fade In ─────────────────────────────────────────────── */
@@ -10,7 +10,7 @@
 
 /* ── Fade In Up ──────────────────────────────────────────── */
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(60px); }
+  from { opacity: 0; transform: translateY(50px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
@@ -34,27 +34,27 @@
 
 /* ── Scale In ────────────────────────────────────────────── */
 @keyframes scaleIn {
-  from { opacity: 0; transform: scale(0.75); }
+  from { opacity: 0; transform: scale(0.8); }
   to   { opacity: 1; transform: scale(1); }
 }
 
 /* ── Floating Bob ────────────────────────────────────────── */
 @keyframes float {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
-  33%       { transform: translateY(-18px) rotate(3deg); }
-  66%       { transform: translateY(-8px) rotate(-3deg); }
+  33%       { transform: translateY(-14px) rotate(3deg); }
+  66%       { transform: translateY(-7px) rotate(-3deg); }
 }
 
 /* ── Float Slow ──────────────────────────────────────────── */
 @keyframes floatSlow {
   0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-24px); }
+  50%       { transform: translateY(-20px); }
 }
 
 /* ── Pulse Glow ──────────────────────────────────────────── */
 @keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 20px rgba(229,57,53,0.4), 0 0 60px rgba(229,57,53,0.2); }
-  50%       { box-shadow: 0 0 40px rgba(229,57,53,0.8), 0 0 100px rgba(229,57,53,0.4); }
+  0%, 100% { box-shadow: 0 0 20px rgba(2,132,199,0.3), 0 0 60px rgba(2,132,199,0.15); }
+  50%       { box-shadow: 0 0 40px rgba(2,132,199,0.5), 0 0 100px rgba(2,132,199,0.25); }
 }
 
 /* ── Pulse Ring ──────────────────────────────────────────── */
@@ -83,24 +83,105 @@
   66%       { border-radius: 50% 50% 70% 30% / 30% 70% 50% 50%; transform: translate(20px,-30px) scale(0.9); }
 }
 
-/* ── Splash Logo Pulse ───────────────────────────────────── */
-@keyframes splashLogoPulse {
-  0%   { transform: scale(0.5); opacity: 0; }
-  60%  { transform: scale(1.1); opacity: 1; }
-  80%  { transform: scale(0.95); }
-  100% { transform: scale(1); opacity: 1; }
+/* ── Splash Double Door (Split Doors) ────────────────────── */
+@keyframes doorOpenLeft {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
 }
 
-/* ── Splash Glow Expand ──────────────────────────────────── */
-@keyframes splashGlowExpand {
-  0%   { transform: scale(0); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+@keyframes doorOpenRight {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(100%); }
 }
 
-/* ── Splash Fade Out ─────────────────────────────────────── */
-@keyframes splashFadeOut {
-  0%   { opacity: 1; transform: scale(1); }
-  100% { opacity: 0; transform: scale(1.05); }
+@keyframes splashContentFadeOut {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(0.85); }
+}
+
+/* ── Ocean Wave Animations ───────────────────────────────── */
+@keyframes waveMoveSlow {
+  0%   { transform: translateX(0) translateZ(0) scaleY(1); }
+  50%  { transform: translateX(-25%) translateZ(0) scaleY(1.08); }
+  100% { transform: translateX(-50%) translateZ(0) scaleY(1); }
+}
+
+@keyframes waveMoveFast {
+  0%   { transform: translateX(0) translateZ(0) scaleY(1); }
+  50%  { transform: translateX(-35%) translateZ(0) scaleY(0.92); }
+  100% { transform: translateX(-70%) translateZ(0) scaleY(1); }
+}
+
+/* ── Flying Seagulls Animations ─────────────────────────── */
+@keyframes flapLeftWing {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(-28deg); }
+}
+
+@keyframes flapRightWing {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(28deg); }
+}
+
+@keyframes seagullFlight1 {
+  0% {
+    left: -70px;
+    transform: translateY(0px) scale(0.9);
+  }
+  25% {
+    transform: translateY(-18px) scale(0.95);
+  }
+  50% {
+    transform: translateY(8px) scale(1);
+  }
+  75% {
+    transform: translateY(-12px) scale(0.92);
+  }
+  100% {
+    left: 105vw;
+    transform: translateY(0px) scale(0.85);
+  }
+}
+
+@keyframes seagullFlight2 {
+  0% {
+    left: -70px;
+    transform: translateY(12px) scale(0.65);
+  }
+  50% {
+    transform: translateY(-22px) scale(0.72);
+  }
+  100% {
+    left: 105vw;
+    transform: translateY(8px) scale(0.65);
+  }
+}
+
+@keyframes seagullFlight3 {
+  0% {
+    left: -70px;
+    transform: translateY(-8px) scale(0.82);
+  }
+  50% {
+    transform: translateY(16px) scale(0.88);
+  }
+  100% {
+    left: 105vw;
+    transform: translateY(-12px) scale(0.82);
+  }
+}
+
+/* ── Hero Staggered Entrance ─────────────────────────────── */
+.hero-stagger {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-stagger.entered {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ── Typing Cursor ───────────────────────────────────────── */
@@ -115,32 +196,17 @@
   100% { background-position: 200% center; }
 }
 
-/* ── Progress Fill ───────────────────────────────────────── */
-@keyframes progressFill {
-  from { width: 0%; }
-}
-
-/* ── Slide In ────────────────────────────────────────────── */
-@keyframes slideInLeft {
-  from { transform: translateX(-100%); opacity: 0; }
-  to   { transform: translateX(0); opacity: 1; }
-}
-@keyframes slideInRight {
-  from { transform: translateX(100%); opacity: 0; }
-  to   { transform: translateX(0); opacity: 1; }
-}
-
 /* ── Timeline Dot Ping ───────────────────────────────────── */
 @keyframes dotPing {
-  0%   { transform: scale(1); box-shadow: 0 0 0 0 rgba(229,57,53,0.7); }
-  70%  { transform: scale(1); box-shadow: 0 0 0 12px rgba(229,57,53,0); }
-  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(229,57,53,0); }
+  0%   { transform: scale(1); box-shadow: 0 0 0 0 rgba(2,132,199,0.6); }
+  70%  { transform: scale(1); box-shadow: 0 0 0 12px rgba(2,132,199,0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(2,132,199,0); }
 }
 
 /* ── Scroll Reveal Utility Classes ──────────────────────── */
 .reveal {
   opacity: 0;
-  transform: translateY(50px);
+  transform: translateY(40px);
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -151,7 +217,7 @@
 
 .reveal-left {
   opacity: 0;
-  transform: translateX(-60px);
+  transform: translateX(-50px);
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -162,7 +228,7 @@
 
 .reveal-right {
   opacity: 0;
-  transform: translateX(60px);
+  transform: translateX(50px);
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -173,7 +239,7 @@
 
 .reveal-scale {
   opacity: 0;
-  transform: scale(0.85);
+  transform: scale(0.88);
   transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
               transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }

@@ -1,61 +1,91 @@
 /* ============================================================
-   MAIN.JS — Core App Logic: Splash, Navbar, Slider, Form, etc.
+   MAIN.JS — Core App Logic: Double Door Splash, Sidebar, Ocean Waves
    ============================================================ */
 
-/* ── Splash Screen ───────────────────────────────────────── */
+/* ── Splash Screen (Slide Left) ──────────────────────────── */
 function initSplash() {
-  const splash   = document.getElementById('splash');
-  const fill     = document.getElementById('splash-fill');
+  const splash = document.getElementById('splash');
+  const fill   = document.getElementById('splash-fill');
   if (!splash) return;
 
   // Start progress bar
   setTimeout(() => { if (fill) fill.style.width = '100%'; }, 100);
 
-  // Fade out splash after 2.4s
+  // Trigger slide-left after 1.8s
   setTimeout(() => {
-    splash.classList.add('hidden');
-    setTimeout(() => { splash.style.display = 'none'; }, 800);
-  }, 2500);
+    splash.classList.add('opening');
+
+    // Navbar / sidebar enters right as splash starts sliding (feels connected)
+    setTimeout(() => {
+      initSidebarEntrance();
+    }, 200);
+
+    // Hero content (photo, name, etc.) enters after slide finishes
+    setTimeout(() => {
+      initHeroEntrance();
+    }, 750);
+
+    // Hide splash DOM after animation done
+    setTimeout(() => {
+      splash.classList.add('hidden');
+      document.body.classList.add('splash-done');
+    }, 1000);
+  }, 1900);
 }
 
-/* ── Navbar Scroll Behaviour + Scroll Spy ────────────────── */
-function initNavbar() {
-  const navbar = document.getElementById('navbar');
-  if (!navbar) return;
+/* ── Sidebar Entrance Animation ─────────────────────────── */
+function initSidebarEntrance() {
+  const sidebar      = document.getElementById('sidebar');
+  const mobileHeader = document.getElementById('mobile-header');
+  if (sidebar)      sidebar.classList.add('entered');
+  if (mobileHeader) mobileHeader.classList.add('entered');
+}
 
-  // ── Glass effect on scroll ──
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  }, { passive: true });
+/* ── Hero Staggered Entrance Animation ──────────────────── */
+function initHeroEntrance() {
+  const elements = document.querySelectorAll('.hero-stagger');
+  elements.forEach((el, idx) => {
+    const step = parseInt(el.getAttribute('data-step')) || (idx + 1);
+    setTimeout(() => {
+      el.classList.add('entered');
+    }, step * 150);
+  });
+}
 
-  // ── Scroll Spy: highlight active nav link ──
-  const navLinks   = navbar.querySelectorAll('.nav-link:not(.nav-cta)');
-  const sectionIds = [...navLinks].map(link => link.getAttribute('href').replace('#', ''));
+/* ── Sidebar Navigation & Scroll Spy ────────────────────── */
+function initSidebar() {
+  const sidebarLinks = document.querySelectorAll('.sidebar-link');
+  const mobileLinks  = document.querySelectorAll('.mobile-nav-link');
+  const sectionIds   = ['hero', 'about', 'skills', 'projects', 'experience', 'certificates', 'github', 'contact'];
 
-  function updateActiveLink() {
-    const scrollY    = window.scrollY;
-    const navHeight  = navbar.offsetHeight;
-    let   currentId = sectionIds[0];
+  function updateActiveSection() {
+    const scrollY = window.scrollY;
+    let currentId = 'hero';
 
-    sectionIds.forEach(id => {
+    sectionIds.forEach((id) => {
       const section = document.getElementById(id);
       if (!section) return;
-      const top = section.getBoundingClientRect().top + scrollY - navHeight - 80;
-      if (scrollY >= top) currentId = id;
+      const top = section.offsetTop - 120;
+      if (scrollY >= top) {
+        currentId = id;
+      }
     });
 
-    navLinks.forEach(link => {
-      const isActive = link.getAttribute('href') === '#' + currentId;
-      link.classList.toggle('active', isActive);
+    // Update Desktop Sidebar active link
+    sidebarLinks.forEach((link) => {
+      const href = link.getAttribute('href').replace('#', '');
+      link.classList.toggle('active', href === currentId);
+    });
+
+    // Update Mobile Nav active link
+    mobileLinks.forEach((link) => {
+      const href = link.getAttribute('href').replace('#', '');
+      link.classList.toggle('active', href === currentId);
     });
   }
 
-  window.addEventListener('scroll', updateActiveLink, { passive: true });
-  updateActiveLink(); // run on load
+  window.addEventListener('scroll', updateActiveSection, { passive: true });
+  updateActiveSection();
 }
 
 /* ── Mobile Hamburger Toggle ─────────────────────────────── */
@@ -117,12 +147,13 @@ function initCertSlider() {
   if (!slider) return;
 
   const cards     = slider.querySelectorAll('.cert-card');
+  if (cards.length === 0) return;
   const cardWidth = () => cards[0].offsetWidth + 24; // gap=1.5rem=24px
   let   current   = 0;
   const total     = cards.length;
 
   // Create dots
-  if (dotsWrap) {
+  if (dotsWrap && dotsWrap.children.length === 0) {
     cards.forEach((_, i) => {
       const dot = document.createElement('button');
       dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
@@ -177,7 +208,7 @@ function initContactForm() {
     btn.innerHTML = '<span class="spinner"></span> Sending…';
     btn.disabled  = true;
 
-    // Simulate sending (replace with actual endpoint)
+    // Simulate sending
     await new Promise((r) => setTimeout(r, 1800));
 
     btn.innerHTML = '✓ Message Sent!';
@@ -202,8 +233,7 @@ function showToast(message, type = '') {
   if (toastIcon) toastIcon.className = 'toast-icon ' + (type === 'success' ? '✓' : 'ℹ');
   toast.className      = `toast ${type}`;
 
-  // Force reflow
-  toast.offsetHeight;
+  toast.offsetHeight; // Force reflow
   toast.classList.add('show');
 
   setTimeout(() => toast.classList.remove('show'), 4000);
@@ -215,13 +245,11 @@ function generateContribGraph() {
   const grid = document.getElementById('contrib-grid');
   if (!grid) return;
 
-  // Generate 52 weeks × 7 days = 364 cells
   const levels = ['', 'l1', 'l2', 'l3', 'l4'];
   const cells  = 364;
   let html     = '';
 
   for (let i = 0; i < cells; i++) {
-    // Weight: recent weeks denser
     const week    = Math.floor(i / 7);
     const density = week > 30 ? 0.6 : 0.35;
     const rand    = Math.random();
@@ -238,7 +266,9 @@ function generateContribGraph() {
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener('click', (e) => {
-      const target = document.querySelector(link.getAttribute('href'));
+      const href = link.getAttribute('href');
+      if (!href || href === '#') return;
+      const target = document.querySelector(href);
       if (!target) return;
       e.preventDefault();
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -260,7 +290,7 @@ function initRipple() {
         position:absolute; border-radius:50%;
         width:${size}px; height:${size}px;
         left:${x}px; top:${y}px;
-        background:rgba(229,57,53,0.07);
+        background:rgba(2, 132, 199, 0.08);
         transform:scale(0); animation:rippleAnim 0.6s ease-out;
         pointer-events:none; z-index:0;
       `;
@@ -275,7 +305,7 @@ function initRipple() {
 /* ── Entry Point ─────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   initSplash();
-  initNavbar();
+  initSidebar();
   initMobileNav();
   initScrollProgress();
   initBackToTop();

@@ -61,181 +61,243 @@
   </button>
 
   <!-- ═══════════════════════════════════════════════════════
-       1. SPLASH SCREEN
+       1. SPLASH SCREEN (SLIDE LEFT)
   ═══════════════════════════════════════════════════════ -->
   <div id="splash" role="status" aria-label="Loading portfolio">
-    <!-- Ambient glow -->
-    <div class="splash-glow" aria-hidden="true"></div>
-
-    <!-- Pulsing rings -->
-    <div class="splash-rings" aria-hidden="true">
-      <div class="splash-ring"></div>
-      <div class="splash-ring"></div>
-      <div class="splash-ring"></div>
-    </div>
-
-    <!-- Logo -->
-    <div class="splash-logo">
+    <div class="splash-center">
       <div class="splash-logo-icon" aria-hidden="true">🚀</div>
-      <div>
-        <div class="splash-logo-text">YANUAR</div>
-        <div class="splash-logo-sub">Portfolio · 2026</div>
+      <div class="splash-logo-text">YANUAR</div>
+      <div class="splash-logo-sub">Portfolio · 2026</div>
+      <div class="splash-progress" aria-hidden="true">
+        <div class="splash-progress-fill" id="splash-fill"></div>
       </div>
-    </div>
-
-    <!-- Progress bar -->
-    <div class="splash-progress" aria-hidden="true">
-      <div class="splash-progress-fill" id="splash-fill"></div>
     </div>
   </div>
 
   <!-- ═══════════════════════════════════════════════════════
-       2. NAVIGATION BAR
+       2. FIXED LEFT SIDEBAR NAVIGATION (DESKTOP)
   ═══════════════════════════════════════════════════════ -->
-  <nav id="navbar" role="navigation" aria-label="Main navigation">
-    <div class="container">
-      <div class="nav-inner">
-        <!-- Logo -->
-        <a href="#hero" class="nav-logo" aria-label="Yanuar Portfolio Home">
-          <div class="nav-logo-mark" aria-hidden="true">Y</div>
-          <span>Yanuar</span>
-        </a>
-
-        <!-- Desktop Menu -->
-        <ul class="nav-menu" role="list">
-          <li><a href="#hero"         class="nav-link">Home</a></li>
-          <li><a href="#about"        class="nav-link">About</a></li>
-          <li><a href="#skills"       class="nav-link">Skills</a></li>
-          <li><a href="#projects"     class="nav-link">Projects</a></li>
-          <li><a href="#certificates" class="nav-link">Certificates</a></li>
-          <li><a href="#contact"      class="nav-link nav-cta">Contact</a></li>
-        </ul>
-
-        <!-- Hamburger -->
-        <button id="hamburger" class="nav-hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
+  <!-- ═══════════════════════════════════════════════════════
+       2. FIXED LEFT SIDEBAR NAVIGATION (DESKTOP)
+  ═══════════════════════════════════════════════════════ -->
+  <aside id="sidebar" class="hero-stagger" data-step="1" role="navigation" aria-label="Main sidebar navigation">
+    <div class="sidebar-top">
+      <a href="#hero" class="sidebar-logo" aria-label="Yanuar Portfolio Home">Y</a>
     </div>
-  </nav>
+
+    <ul class="sidebar-menu" role="list">
+      <li>
+        <a href="#hero" class="sidebar-link active" aria-label="Home">
+          <i class="fa-solid fa-house" aria-hidden="true"></i>
+          <span class="tooltip">Home</span>
+        </a>
+      </li>
+      <li>
+        <a href="#about" class="sidebar-link" aria-label="About">
+          <i class="fa-solid fa-user" aria-hidden="true"></i>
+          <span class="tooltip">About</span>
+        </a>
+      </li>
+      <li>
+        <a href="#skills" class="sidebar-link" aria-label="Skills">
+          <i class="fa-solid fa-code" aria-hidden="true"></i>
+          <span class="tooltip">Skills</span>
+        </a>
+      </li>
+      <li>
+        <a href="#projects" class="sidebar-link" aria-label="Projects">
+          <i class="fa-solid fa-rocket" aria-hidden="true"></i>
+          <span class="tooltip">Projects</span>
+        </a>
+      </li>
+      <li>
+        <a href="#experience" class="sidebar-link" aria-label="Experience">
+          <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+          <span class="tooltip">Experience</span>
+        </a>
+      </li>
+      <li>
+        <a href="#certificates" class="sidebar-link" aria-label="Certificates">
+          <i class="fa-solid fa-award" aria-hidden="true"></i>
+          <span class="tooltip">Certificates</span>
+        </a>
+      </li>
+      <li>
+        <a href="#github" class="sidebar-link" aria-label="GitHub">
+          <i class="fa-brands fa-github" aria-hidden="true"></i>
+          <span class="tooltip">GitHub</span>
+        </a>
+      </li>
+      <li>
+        <a href="#contact" class="sidebar-link" aria-label="Contact">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          <span class="tooltip">Contact</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="sidebar-bottom">
+      <a href="https://github.com/khusaery01" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub">
+        <i class="fa-brands fa-github" aria-hidden="true"></i>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ═══════════════════════════════════════════════════════
+       MOBILE HEADER & DRAWER NAVIGATION (<1024px)
+  ═══════════════════════════════════════════════════════ -->
+  <header id="mobile-header" class="hero-stagger" data-step="1" role="banner">
+    <a href="#hero" class="mobile-logo" aria-label="Yanuar Portfolio Home">
+      <div class="mobile-logo-mark" aria-hidden="true">Y</div>
+      <span>Yanuar</span>
+    </a>
+    <button id="hamburger" class="nav-hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
 
   <!-- Mobile Nav Drawer -->
   <div id="mobile-nav" class="mobile-nav" role="navigation" aria-label="Mobile navigation">
-    <a href="#hero"         class="mobile-nav-link">🏠 Home</a>
-    <a href="#about"        class="mobile-nav-link">👤 About</a>
-    <a href="#skills"       class="mobile-nav-link">⚡ Skills</a>
-    <a href="#projects"     class="mobile-nav-link">🚀 Projects</a>
-    <a href="#experience"   class="mobile-nav-link">📅 Experience</a>
-    <a href="#certificates" class="mobile-nav-link">🏆 Certificates</a>
-    <a href="#github"       class="mobile-nav-link">💻 GitHub</a>
-    <a href="#contact"      class="mobile-nav-link">✉️ Contact</a>
+    <a href="#hero"         class="mobile-nav-link"><i class="fa-solid fa-house" aria-hidden="true"></i> Home</a>
+    <a href="#about"        class="mobile-nav-link"><i class="fa-solid fa-user" aria-hidden="true"></i> About</a>
+    <a href="#skills"       class="mobile-nav-link"><i class="fa-solid fa-code" aria-hidden="true"></i> Skills</a>
+    <a href="#projects"     class="mobile-nav-link"><i class="fa-solid fa-rocket" aria-hidden="true"></i> Projects</a>
+    <a href="#experience"   class="mobile-nav-link"><i class="fa-solid fa-briefcase" aria-hidden="true"></i> Experience</a>
+    <a href="#certificates" class="mobile-nav-link"><i class="fa-solid fa-award" aria-hidden="true"></i> Certificates</a>
+    <a href="#github"       class="mobile-nav-link"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a>
+    <a href="#contact"      class="mobile-nav-link"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Contact</a>
   </div>
 
   <!-- ═══════════════════════════════════════════════════════
-       3. HERO SECTION
+       3. HERO SECTION & OCEAN WAVE
   ═══════════════════════════════════════════════════════ -->
   <section id="hero" aria-label="Hero section">
+    <!-- Animated Sky Overlay: Flying Seagulls -->
+    <div class="hero-sky-elements" aria-hidden="true">
+
+      <!-- Animated Seagull 1 -->
+      <div class="seagull-wrap seagull-1">
+        <svg class="seagull-svg" viewBox="0 0 50 30">
+          <path class="seagull-wing-left" d="M 25 15 Q 12 2, 2 12 Q 12 10, 25 15 Z" />
+          <path class="seagull-wing-right" d="M 25 15 Q 38 2, 48 12 Q 38 10, 25 15 Z" />
+        </svg>
+      </div>
+
+      <!-- Animated Seagull 2 -->
+      <div class="seagull-wrap seagull-2">
+        <svg class="seagull-svg" viewBox="0 0 50 30">
+          <path class="seagull-wing-left" d="M 25 15 Q 12 2, 2 12 Q 12 10, 25 15 Z" />
+          <path class="seagull-wing-right" d="M 25 15 Q 38 2, 48 12 Q 38 10, 25 15 Z" />
+        </svg>
+      </div>
+
+      <!-- Animated Seagull 3 -->
+      <div class="seagull-wrap seagull-3">
+        <svg class="seagull-svg" viewBox="0 0 50 30">
+          <path class="seagull-wing-left" d="M 25 15 Q 12 2, 2 12 Q 12 10, 25 15 Z" />
+          <path class="seagull-wing-right" d="M 25 15 Q 38 2, 48 12 Q 38 10, 25 15 Z" />
+        </svg>
+      </div>
+    </div>
+
     <!-- Animated background -->
     <div class="hero-bg" aria-hidden="true">
       <div class="hero-blob hero-blob-1"></div>
       <div class="hero-blob hero-blob-2"></div>
-      <div class="hero-blob hero-blob-3"></div>
     </div>
 
     <div class="container">
-      <div class="hero-grid">
-        <!-- Left: Content -->
-        <div class="hero-content">
-          <!-- Badge -->
-          <div class="hero-badge">
-            <span class="hero-badge-dot" aria-hidden="true"></span>
-            Available for freelance &amp; full-time
-          </div>
-
-          <!-- Name -->
-          <p class="hero-greeting">Hello, I'm</p>
-          <h1 class="hero-name">YANUAR</h1>
-
-          <!-- Typing roles -->
-          <div class="hero-roles" aria-live="polite">
-            <span class="hero-roles-prefix">I'm a </span>
-            <span class="hero-typing" id="hero-typing" aria-label="Flutter Developer"></span>
-            <span class="hero-cursor" aria-hidden="true">|</span>
-          </div>
-
-          <!-- Tagline -->
-          <p class="hero-tagline">
-            Building Modern Mobile &amp; Web Experiences — from elegant Flutter UIs
-            to powerful Laravel APIs, turning ideas into scalable products.
-          </p>
-
-          <!-- CTA Buttons -->
-          <div class="hero-actions">
-            <a href="#" id="download-cv" class="btn btn-primary" aria-label="Download CV">
-              <i class="fa-solid fa-download" aria-hidden="true"></i> Download CV
-            </a>
-            <a href="#projects" class="btn btn-glass" aria-label="View Projects">
-              <i class="fa-solid fa-rocket" aria-hidden="true"></i> View Projects
-            </a>
-            <a href="https://github.com/khusaery01" target="_blank" rel="noopener noreferrer" class="btn btn-outline" aria-label="GitHub Profile">
-              <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
-            </a>
-            <a href="#contact" class="btn btn-outline" aria-label="Contact Me">
-              <i class="fa-solid fa-envelope" aria-hidden="true"></i> Contact
-            </a>
-          </div>
-
-          <!-- Social Links -->
-          <div class="hero-socials">
-            <span class="hero-socials-label">Find me on</span>
-            <a href="https://github.com/khusaery01"    target="_blank" rel="noopener" class="social-btn" aria-label="GitHub">
-              <i class="fa-brands fa-github"></i>
-            </a>
-            <a href="https://instagram.com/yanuarkhsryyy" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
-              <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="https://wa.me/62895636160154" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp">
-              <i class="fa-brands fa-whatsapp"></i>
-            </a>
-          </div>
+      <div class="hero-centered-wrap">
+        <!-- 1. Badge -->
+        <div class="hero-badge hero-stagger" data-step="2">
+          <span class="hero-badge-dot" aria-hidden="true"></span>
+          Available for freelance &amp; full-time
         </div>
 
-        <!-- Right: Visual -->
-        <div class="hero-visual">
+        <!-- 2. Centered Avatar & Floating Tech Icons -->
+        <div class="hero-visual-centered hero-stagger" data-step="3">
           <div class="hero-avatar-wrap">
             <div class="hero-avatar-bg" aria-hidden="true"></div>
             <div class="hero-avatar-ring"   aria-hidden="true"></div>
             <div class="hero-avatar-ring-2" aria-hidden="true"></div>
-            <div class="hero-avatar-img"    aria-label="Yanuar avatar">👨‍💻</div>
+            <div class="hero-avatar-img"    aria-label="Muhammad Yanuar Khusaeri photo">
+              <img src="assets/profile.jpg" alt="Muhammad Yanuar Khusaeri" class="hero-profile-pic" />
+            </div>
 
             <!-- Floating Tech Icons -->
             <div class="floating-icon fi-flutter" title="Flutter" aria-label="Flutter">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" width="28" height="28" alt="Flutter" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" width="24" height="24" alt="Flutter" />
             </div>
             <div class="floating-icon fi-laravel" title="Laravel" aria-label="Laravel">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg" width="28" height="28" alt="Laravel" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg" width="24" height="24" alt="Laravel" />
             </div>
             <div class="floating-icon fi-git" title="Git" aria-label="Git">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="28" height="28" alt="Git" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="24" height="24" alt="Git" />
             </div>
             <div class="floating-icon fi-mysql" title="MySQL" aria-label="MySQL">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" width="28" height="28" alt="MySQL" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" width="24" height="24" alt="MySQL" />
             </div>
             <div class="floating-icon fi-figma" title="Figma" aria-label="Figma">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" width="28" height="28" alt="Figma" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" width="24" height="24" alt="Figma" />
             </div>
             <div class="floating-icon fi-dart" title="Dart" aria-label="Dart">
-              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" width="28" height="28" alt="Dart" />
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" width="24" height="24" alt="Dart" />
             </div>
           </div>
+        </div>
+
+        <!-- 3. Greeting & Name -->
+        <p class="hero-greeting hero-stagger" data-step="4">Hello, I'm</p>
+        <h1 class="hero-name hero-stagger" data-step="4">Muhammad Yanuar Khusaeri</h1>
+
+        <!-- 4. Typing roles -->
+        <div class="hero-roles hero-stagger" data-step="5" aria-live="polite">
+          <span class="hero-roles-prefix">I'm a </span>
+          <span class="hero-typing" id="hero-typing" aria-label="Flutter Developer"></span>
+          <span class="hero-cursor" aria-hidden="true">|</span>
+        </div>
+
+        <!-- 5. Concise Tagline -->
+        <p class="hero-tagline hero-stagger" data-step="6">
+          Crafting high-performance mobile apps with Flutter &amp; robust backend systems with Laravel.
+        </p>
+
+        <!-- 6. Action Buttons -->
+        <div class="hero-actions hero-stagger" data-step="7">
+          <a href="#" id="download-cv" class="btn btn-primary" aria-label="Download CV">
+            <i class="fa-solid fa-download" aria-hidden="true"></i> Download CV
+          </a>
+          <a href="#projects" class="btn btn-glass" aria-label="View Projects">
+            <i class="fa-solid fa-rocket" aria-hidden="true"></i> View Projects
+          </a>
+          <a href="#contact" class="btn btn-outline" aria-label="Contact Me">
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i> Contact
+          </a>
+        </div>
+
+        <!-- 7. Social Links -->
+        <div class="hero-socials hero-stagger" data-step="8">
+          <span class="hero-socials-label">Find me on</span>
+          <a href="https://github.com/khusaery01"    target="_blank" rel="noopener" class="social-btn" aria-label="GitHub">
+            <i class="fa-brands fa-github" aria-hidden="true"></i>
+          </a>
+          <a href="https://instagram.com/yanuarkhsryyy" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+          </a>
+          <a href="https://wa.me/62895636160154" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+          </a>
         </div>
       </div>
     </div>
 
-    <!-- Scroll indicator -->
-    <div class="scroll-indicator" aria-hidden="true">
-      <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
-      <span>Scroll</span>
+    <!-- Animated SVG Ocean Wave at Hero Bottom -->
+    <div class="ocean-wave-wrap" aria-hidden="true">
+      <svg class="ocean-wave-svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path class="wave-layer-1" d="M0,32L48,42.7C96,53,192,75,288,80C384,85,480,75,576,64C672,53,768,43,864,48C960,53,1056,75,1152,80C1248,85,1344,75,1392,74.7L1440,75L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z"></path>
+        <path class="wave-layer-2" d="M0,64L48,58.7C96,53,192,43,288,48C384,53,480,75,576,80C672,85,768,75,864,64C960,53,1056,43,1152,48C1248,53,1344,75,1392,85.3L1440,96L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z"></path>
+        <path class="wave-layer-3" d="M0,96L48,85.3C96,75,192,53,288,58.7C384,64,480,96,576,96C672,96,768,64,864,58.7C960,53,1056,75,1152,80C1248,85,1344,75,1392,74.7L1440,75L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z"></path>
+      </svg>
     </div>
   </section>
 
@@ -253,8 +315,10 @@
       <div class="about-grid">
         <!-- Left: Profile Card -->
         <div class="glass-card about-card reveal-left">
-          <div class="about-avatar" aria-hidden="true">👨‍💻</div>
-          <div class="about-name">Yanuar</div>
+          <div class="about-avatar" aria-hidden="true">
+            <img src="assets/profile.jpg" alt="Muhammad Yanuar Khusaeri" class="about-profile-pic" />
+          </div>
+          <div class="about-name">Muhammad Yanuar Khusaeri</div>
           <div class="about-role">Flutter · Laravel · UI Designer</div>
 
           <div class="about-info-list">
@@ -308,8 +372,8 @@
           <div class="glass-card" style="padding:2.5rem;">
             <div class="section-tag" style="margin-bottom:1.25rem;">My Story</div>
             <p class="about-desc">
-              I'm a dedicated software developer specializing in <strong style="color:var(--white)">Flutter</strong> for cross-platform mobile apps
-              and <strong style="color:var(--white)">Laravel</strong> for robust backend systems.
+              I'm a dedicated software developer specializing in <strong style="color:var(--primary)">Flutter</strong> for cross-platform mobile apps
+              and <strong style="color:var(--primary)">Laravel</strong> for robust backend systems.
               I'm passionate about writing clean, scalable code and designing intuitive user interfaces
               that feel both premium and effortless to use.
             </p>
@@ -584,7 +648,7 @@
         <!-- Project 1: DIMVES -->
         <article class="glass-card project-card reveal">
           <div class="project-thumbnail">
-            <div class="project-bg-gradient" style="background: linear-gradient(135deg, rgba(229,57,53,0.4) 0%, rgba(255,112,67,0.3) 100%);" aria-hidden="true"></div>
+            <div class="project-bg-gradient" style="background: linear-gradient(135deg, rgba(5,150,105,0.3) 0%, rgba(52,211,153,0.2) 100%);" aria-hidden="true"></div>
             <!-- Phone mockup -->
             <div class="project-mockup" aria-label="DIMVES app mockup">
               <div class="project-mockup-notch" aria-hidden="true"></div>
@@ -894,11 +958,11 @@
           <div id="contrib-grid" class="contrib-grid" aria-label="GitHub contribution graph"></div>
           <div style="display:flex; align-items:center; gap:0.5rem; margin-top:1rem; font-size:0.75rem; color:var(--text-muted);">
             <span>Less</span>
-            <div style="width:10px;height:10px;border-radius:2px;background:rgba(255,255,255,0.05);"></div>
-            <div style="width:10px;height:10px;border-radius:2px;background:rgba(229,57,53,0.2);"></div>
-            <div style="width:10px;height:10px;border-radius:2px;background:rgba(229,57,53,0.4);"></div>
-            <div style="width:10px;height:10px;border-radius:2px;background:rgba(229,57,53,0.7);"></div>
-            <div style="width:10px;height:10px;border-radius:2px;background:rgba(229,57,53,0.95);"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:rgba(0,0,0,0.04);"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:rgba(5,150,105,0.15);"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:rgba(5,150,105,0.3);"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:rgba(5,150,105,0.55);"></div>
+            <div style="width:10px;height:10px;border-radius:2px;background:rgba(5,150,105,0.85);"></div>
             <span>More</span>
           </div>
         </div>
